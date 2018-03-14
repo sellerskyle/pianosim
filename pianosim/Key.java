@@ -230,7 +230,9 @@ public class Key {
         
         return middleKeyPicture;
     }
+
     
+    /*
     public static void main(String[] args) {
         System.out.println(KEY_WIDTH * WHITE_KEYS_IN_OCTAVE);
         BasicFrame frame = new BasicFrame("Test");
@@ -258,18 +260,5 @@ public class Key {
         frame.show();
     }
     
-//    public Picture createBottomWhiteKey() {
-//        int bottomKeyHeight = PIANO_HEIGHT / 3;
-//        int bottomKeyWidth = Piano.PIANO_WIDTH / (Piano.TOTAL_WHITE_KEYS_IN_OCTAVE * Piano.NUM_OCTAVES);
-//        
-//        Image bottomWhiteKeyImg = BasicFrame.createImage(bottomKeyWidth, bottomKeyHeight);
-//        Graphics bottomWhiteKeyGrapic = bottomWhiteKeyImg.getGraphics();
-//        bottomWhiteKeyGrapic.setColor(Color.LIGHT_GRAY);
-//        bottomWhiteKeyGrapic.fillRect(0, 0, bottomKeyWidth, bottomKeyHeight);
-//        bottomWhiteKeyGrapic.drawLine(0, 0, bottomKeyWidth, 0);
-//        bottomWhiteKeyGrapic.drawLine(0, 0, 0, bottomKeyHeight);
-//        bottomWhiteKeyGrapic.drawLine(0, bottomKeyHeight, bottomKeyWidth, bottomKeyHeight);
-//        bottomWhiteKeyGrapic.drawLine(bottomKeyWidth, 0, bottomKeyWidth, bottomKeyHeight);
-//        Picture bottomWhiteKeyPicture = new Picture(bottomWhiteKeyImg);
-//    }
+*/
 }

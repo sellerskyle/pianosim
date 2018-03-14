@@ -5,6 +5,8 @@ import basicgraphics.BasicFrame;
 import basicgraphics.Sprite;
 import basicgraphics.SpriteComponent;
 import basicgraphics.images.Picture;
+import basicgraphics.sounds.ReusableClip;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,6 +16,28 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import java.awt.Robot;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+/*
+TODO:
+*Add on click functionality
+
+*Add in sounds
+
+*Add file output that records notes that you have played
+-have a reset and save button
+
+*Notes should be played at x BPM for 1 beat
+
+Can use time between key pressed and key released for key length
+
+can alter time between play and stop to mimic note length
+*/
 
 public class PianoSimTest {
     //piano constants
@@ -37,86 +61,104 @@ public class PianoSimTest {
     
     final static Dimension FRAME_DIMENSION = new Dimension(KEY_WIDTH * TOTAL_WHITE_KEYS, KEY_HEIGHT);
     
-    //final static Dimension BOTTOM_SCREEN_DIMENSION = new Dimension(KEY_WIDTH * TOTAL_WHITE_KEYS, BOTTOM_KEY_HEIGHT);
-    //final static Dimension TOP_SCREEN_DIMENSION = new Dimenstion(KEY_WIDTH * TOTAL_WHITE_KEYS, TOP_KEY_HEIGHT)
-    
-    
     public static void main(String[] args) {
         assert SCALE % 3 == 0;
         // Creating both frame and screen, with screen being in the frame
         BasicFrame frame = new BasicFrame("Piano Simulator");
         final SpriteComponent screen = new SpriteComponent();
         
-        /*
-        final SpriteComponent bottomScreen = new SpriteComponent();
-        final SpriteComponent topScreen = new SpriteComponent();
-        bottomScreen.setPreferredSize(BOTTOM_SCREEN_DIMENSION);
-        topScreen.setPreferredSize(TOP_SCREEN_DIMENSION);
-        */
-        
         screen.setPreferredSize(FRAME_DIMENSION);
-        final String[][] LAYOUT = {{"help"},{"piano"}};
-        //final String[][] LAYOUT = {{"help"},{"pianoTop"},{"pianoBottom"};
+        final String[][] LAYOUT = {{ "help"},{"piano"}};
         final String helpDialog = "The computer keys on the left correspond to the piano key on the right: \n z : C1";
+        final String controlDialog = "The computer keys on the left correspond to the piano key on the right: \n z : C1";
+        
+        //Importing Audio
+        final AudioClip c1Track = new ReusableClip("C1.wav");
+        final AudioClip cSharp1Track = new ReusableClip("C#1.wav");
+        final AudioClip d1Track = new ReusableClip("D1.wav");
+        final AudioClip dSharp1Track = new ReusableClip("D#1.wav");
+        final AudioClip e1Track = new ReusableClip("E1.wav");
+        final AudioClip f1Track = new ReusableClip("F1.wav");
+        final AudioClip fSharp1Track = new ReusableClip("F#1.wav");
+        final AudioClip g1Track = new ReusableClip("G1.wav");
+        final AudioClip gSharp1Track = new ReusableClip("G#1.wav");
+        final AudioClip a1Track = new ReusableClip("A1.wav");
+        final AudioClip aSharp1Track = new ReusableClip("A#1.wav");
+        final AudioClip b1Track = new ReusableClip("B1.wav");
+        final AudioClip c2Track = new ReusableClip("C2.wav");
+        final AudioClip cSharp2Track = new ReusableClip("C#2.wav");
+        final AudioClip d2Track = new ReusableClip("D2.wav");
+        final AudioClip dSharp2Track = new ReusableClip("D#2.wav");
+        final AudioClip e2Track = new ReusableClip("E2.wav");
+        final AudioClip f2Track = new ReusableClip("F2.wav");
+        final AudioClip fSharp2Track = new ReusableClip("F#2.wav");
+        final AudioClip g2Track = new ReusableClip("G2.wav");
+        final AudioClip gSharp2Track = new ReusableClip("G#2.wav");
+        final AudioClip a2Track = new ReusableClip("A2.wav");
+        final AudioClip aSharp2Track = new ReusableClip("A#2.wav");
+        final AudioClip b2Track = new ReusableClip("B2.wav");
         
         frame.addKeyListener(new KeyAdapter() {   
             @Override
             public void keyPressed(KeyEvent ke) {
-                char key = ke.getKeyChar();
+                char key = ke.getKeyChar(); 
                 switch(key){
-                case 'z': /*play c1*/;
+                case 'z': c1Track.play(); System.out.println("C1 played");
                         break;
-                case 's': /*play c#1*/;
+                case 's': cSharp1Track.play();
                         break;
-                case 'x': /*play d1*/;
+                case 'x': d1Track.play();
                         break;
-                case 'd': /*play d#1*/;
+                case 'd': dSharp1Track.play();
                         break;
-                case 'c': /*play e1*/;
+                case 'c': e1Track.play();
                         break;
-                case 'v': /*play f1*/;
+                case 'v': f1Track.play();
                         break;
-                case 'g': /*play f#1*/;
+                case 'g': fSharp1Track.play();
                         break;
-                case 'b': /*play g1*/;
+                case 'b': g1Track.play();
                         break;
-                case 'h': /*play g#1*/;
+                case 'h': gSharp1Track.play();
                         break; 
-                case 'n': /*play a1*/;
+                case 'n': a1Track.play();
                         break; 
-                case 'j': /*play a#1*/;
+                case 'j': aSharp1Track.play();
                         break;  
-                case 'm': /*play b1*/;
+                case 'm': b1Track.play();
                         break;
-                case 'q': /*play c2*/;
+                case 'q': c2Track.play();
                         break;
-                case '2': /*play c#2*/;
+                case '2': cSharp2Track.play();
                         break;
-                case 'w': /*play d2*/;
+                case 'w': d2Track.play();
                         break;
-                case '3': /*play d#2*/;
+                case '3': dSharp2Track.play();
                         break;
-                case 'e': /*play e2*/;
+                case 'e': e2Track.play();
                         break;
-                case 'r': /*play f2*/;
+                case 'r': f2Track.play();
                         break;
-                case '5': /*play f#2*/;
+                case '5': fSharp2Track.play();
                         break;
-                case 't': /*play g2*/;
+                case 't': g2Track.play();
                         break;
-                case '6': /*play g#2*/;
+                case '6': gSharp2Track.play();
                         break; 
-                case 'y': /*play a2*/;
+                case 'y': a2Track.play();
                         break; 
-                case '7': /*play a#2*/;
+                case '7': aSharp2Track.play();
                         break;  
-                case 'u': /*play b2*/;
+                case 'u': b2Track.play();
                         break;
                 default: ;
                         break;
                 } 
             }
         });
+        
+
+        
         
         final JButton helpButton = new JButton("Help");
         helpButton.addActionListener(new ActionListener() {
@@ -127,60 +169,24 @@ public class PianoSimTest {
         });
         frame.add(LAYOUT,"help", helpButton);
         
-        /*
-        Color ivory = new Color(255,255,240);
-        Image bottomWhiteKeyImg = BasicFrame.createImage(KEY_WIDTH, KEY_HEIGHT);
-        Graphics bottomWhiteKeyGraphic = bottomWhiteKeyImg.getGraphics();
-        bottomWhiteKeyGraphic.setColor(ivory);
-        bottomWhiteKeyGraphic.fillRect(0, 0, KEY_WIDTH, KEY_HEIGHT);
-        bottomWhiteKeyGraphic.drawRect(0, 0, KEY_WIDTH, KEY_HEIGHT);
-        Picture bottomWhiteKeyPicture = new Picture(bottomWhiteKeyImg);
+        Key[] pianoKeys = new Key[TOTAL_KEYS];
         
-        Image keyOutlineImg= BasicFrame.createImage(KEY_WIDTH, KEY_HEIGHT);
-        Graphics keyOutlineGraphic = keyOutlineImg.getGraphics();
-        keyOutlineGraphic.setColor(Color.BLACK);
-        keyOutlineGraphic.drawRect(0, 0, KEY_WIDTH-1, KEY_HEIGHT-1);
-        Picture keyOutlinePicture = new Picture(keyOutlineImg);
-        
-        Sprite key1 = new Sprite();
-        key1.setPicture(bottomWhiteKeyPicture);
-        
-        Sprite key1Outline = new Sprite();
-        key1Outline.setPicture(keyOutlinePicture);
-        
-        screen.addSprite(key1);
-        screen.addSprite(key1Outline);
-        */
-        for(int i = 0; i < TOTAL_WHITE_KEYS; i++){
-            Color keyColor = new Color(255, 255, 255-i);
-            Picture keyPicture = createBottomKeyPicture(keyColor);
-            
-            Sprite key = new Sprite();
-            
-            key.setPicture(keyPicture);
-            key.setX(KEY_WIDTH * i);
-            key.setY(KEY_WIDTH * 2); //delete this later
-            
-            screen.addSprite(key);
-            
-            
+        for(int i = 1; i <= TOTAL_KEYS; i++) {
+            pianoKeys[i-1] = new Key(i, KEY_WIDTH);
         }
+        
+        for (int i = 0; i < pianoKeys.length; i++) {
+            Sprite key = new Sprite();
+            key.setPicture(pianoKeys[i].getPicture());
+            key.setX(pianoKeys[i].getXPosition());
+            screen.addSprite(key);
+        }
+        
         screen.start(0,10);
         frame.add(LAYOUT, "piano", screen);
         frame.show();
     }
     
-    public static Picture createBottomKeyPicture(Color c){
-        Image bottomWhiteKeyImg = BasicFrame.createImage(KEY_WIDTH, BOTTOM_KEY_HEIGHT);
-        Graphics bottomWhiteKeyGraphic = bottomWhiteKeyImg.getGraphics();
-        bottomWhiteKeyGraphic.setColor(c);
-        bottomWhiteKeyGraphic.fillRect(0, 0, KEY_WIDTH, KEY_HEIGHT);
-        bottomWhiteKeyGraphic.setColor(Color.BLACK);
-        bottomWhiteKeyGraphic.drawRect(-1, -1, KEY_WIDTH, KEY_HEIGHT);
-        Picture bottomWhiteKeyPicture = new Picture(bottomWhiteKeyImg);
-        
-        return bottomWhiteKeyPicture;
-    }
     
 }
 
