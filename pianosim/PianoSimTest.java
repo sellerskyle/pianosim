@@ -4,12 +4,9 @@ import java.awt.Dimension;
 import basicgraphics.BasicFrame;
 import basicgraphics.Sprite;
 import basicgraphics.SpriteComponent;
-import basicgraphics.images.Picture;
 import basicgraphics.sounds.ReusableClip;
 import java.applet.AudioClip;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -22,6 +19,7 @@ import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 /*
 TODO:
@@ -60,6 +58,12 @@ public class PianoSimTest {
     final static int PIANO_WIDTH = KEY_WIDTH * TOTAL_WHITE_KEYS;
     
     final static Dimension FRAME_DIMENSION = new Dimension(KEY_WIDTH * TOTAL_WHITE_KEYS, KEY_HEIGHT);
+    
+    //From StackOverflow
+    static PointerInfo pointer;
+    static Point point;
+    static Robot robot;
+    static Color mouseColor;
     
     public static void main(String[] args) {
         assert SCALE % 3 == 0;
@@ -157,7 +161,22 @@ public class PianoSimTest {
             }
         });
         
-
+        
+        screen.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                //From stack overflow
+                try{
+                    robot = new Robot();
+                    pointer = MouseInfo.getPointerInfo();
+                    point = pointer.getLocation();
+                    mouseColor = robot.getPixelColor((int)point.getX(),(int)point.getY());
+                    System.out.println("Color at: " + point.getX() + "," + point.getY() + " is: " + mouseColor);
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
+                //Resume my code
+            }
+        });
         
         
         final JButton helpButton = new JButton("Help");

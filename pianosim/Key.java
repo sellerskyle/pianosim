@@ -1,18 +1,12 @@
 package pianosim;
 
 import basicgraphics.BasicFrame;
-import basicgraphics.Sprite;
-import basicgraphics.SpriteComponent;
 import basicgraphics.images.Picture;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import static pianosim.Piano.NUM_OCTAVES;
-import static pianosim.Piano.PIANO_HEIGHT;
 import java.util.Arrays;
-import static pianosim.PianoSimTest.KEY_WIDTH;
-import static pianosim.PianoSimTest.SCALE;
+
 
 public class Key {
     
