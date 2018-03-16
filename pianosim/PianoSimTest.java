@@ -175,6 +175,59 @@ public class PianoSimTest {
                     e.printStackTrace();
                 }
                 //Resume my code
+                int keyBlue = mouseColor.getBlue(); //Value of blue used to identify keys
+                switch(keyBlue){
+                case 254: c1Track.play(); System.out.println("C1 played");
+                        break;
+                case 1: cSharp1Track.play();
+                        break;
+                case 253: d1Track.play();
+                        break;
+                case 2: dSharp1Track.play();
+                        break;
+                case 252: e1Track.play();
+                        break;
+                case 251: f1Track.play();
+                        break;
+                case 3: fSharp1Track.play();
+                        break;
+                case 250: g1Track.play();
+                        break;
+                case 4: gSharp1Track.play();
+                        break; 
+                case 249: a1Track.play();
+                        break; 
+                case 5: aSharp1Track.play();
+                        break;  
+                case 248: b1Track.play();
+                        break;
+                case 247: c2Track.play();
+                        break;
+                case 6: cSharp2Track.play();
+                        break;
+                case 246: d2Track.play();
+                        break;
+                case 7: dSharp2Track.play();
+                        break;
+                case 245: e2Track.play();
+                        break;
+                case 244: f2Track.play();
+                        break;
+                case 8: fSharp2Track.play();
+                        break;
+                case 243: g2Track.play();
+                        break;
+                case 9: gSharp2Track.play();
+                        break; 
+                case 242: a2Track.play();
+                        break; 
+                case 10: aSharp2Track.play();
+                        break;  
+                case 241: b2Track.play();
+                        break;
+                default: ;
+                        break;
+                }
             }
         });
         
