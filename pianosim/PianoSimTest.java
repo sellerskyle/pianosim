@@ -23,9 +23,7 @@ import java.awt.event.MouseEvent;
 
 /*
 TODO:
-*Add on click functionality
-
-*Add in sounds
+-redo all audio
 
 *Add file output that records notes that you have played
 -have a reset and save button
@@ -46,7 +44,7 @@ public class PianoSimTest {
     final static int TOTAL_KEYS = NUM_OCTAVES * KEYS_IN_OCTAVE;
     
     //sizing constants
-    final static int SCALE = 135;
+    final static int SCALE = 60;
     
     final static int KEY_WIDTH = SCALE;
     final static int BOTTOM_KEY_HEIGHT = SCALE;
@@ -101,11 +99,13 @@ public class PianoSimTest {
         final AudioClip a2Track = new ReusableClip("A2.wav");
         final AudioClip aSharp2Track = new ReusableClip("A#2.wav");
         final AudioClip b2Track = new ReusableClip("B2.wav");
+        final AudioClip sustainTrack = new ReusableClip("sustain.wav");
         
         frame.addKeyListener(new KeyAdapter() {   
             @Override
             public void keyPressed(KeyEvent ke) {
                 char key = ke.getKeyChar(); 
+                System.out.println(key);
                 switch(key){
                 case 'z': c1Track.play(); System.out.println("C1 played");
                         break;
@@ -159,10 +159,69 @@ public class PianoSimTest {
                         break;
                 } 
             }
+            
+            public void keyReleased(KeyEvent ke) {
+                char key = ke.getKeyChar(); 
+                System.out.println(key);
+                switch(key){
+                case 'z': c1Track.stop(); System.out.println("C1 stopped");
+                        break;
+                case 's': cSharp1Track.stop();
+                        break;
+                case 'x': d1Track.stop();
+                        break;
+                case 'd': dSharp1Track.stop();
+                        break;
+                case 'c': e1Track.stop();
+                        break;
+                case 'v': f1Track.stop();
+                        break;
+                case 'g': fSharp1Track.stop();
+                        break;
+                case 'b': g1Track.stop();
+                        break;
+                case 'h': gSharp1Track.stop();
+                        break; 
+                case 'n': a1Track.stop();
+                        break; 
+                case 'j': aSharp1Track.stop();
+                        break;  
+                case 'm': b1Track.stop();
+                        break;
+                case 'q': c2Track.stop();
+                        break;
+                case '2': cSharp2Track.stop();
+                        break;
+                case 'w': d2Track.stop();
+                        break;
+                case '3': dSharp2Track.stop();
+                        break;
+                case 'e': e2Track.stop();
+                        break;
+                case 'r': f2Track.stop();
+                        break;
+                case '5': fSharp2Track.stop();
+                        break;
+                case 't': g2Track.stop();
+                        break;
+                case '6': gSharp2Track.stop();
+                        break; 
+                case 'y': a2Track.stop();
+                        break; 
+                case '7': aSharp2Track.stop();
+                        break;  
+                case 'u': b2Track.stop();
+                        break;
+                default: ;
+                        break;
+                } 
+            }
         });
         
         
         screen.addMouseListener(new MouseAdapter() {
+            AudioClip currentTrack;
+            @Override
             public void mousePressed(MouseEvent me) {
                 //From stack overflow
                 try{
@@ -177,58 +236,88 @@ public class PianoSimTest {
                 //Resume my code
                 int keyBlue = mouseColor.getBlue(); //Value of blue used to identify keys
                 switch(keyBlue){
-                case 254: c1Track.play(); System.out.println("C1 played");
+                case 254: c1Track.play();
+                        currentTrack = c1Track;
                         break;
                 case 1: cSharp1Track.play();
+                        currentTrack = cSharp1Track;
                         break;
                 case 253: d1Track.play();
+                        currentTrack = d1Track;
                         break;
                 case 2: dSharp1Track.play();
+                        currentTrack = dSharp1Track;
                         break;
                 case 252: e1Track.play();
+                        currentTrack = e1Track;
                         break;
                 case 251: f1Track.play();
+                        currentTrack = f1Track;
                         break;
                 case 3: fSharp1Track.play();
+                        currentTrack = fSharp1Track;
                         break;
                 case 250: g1Track.play();
+                        currentTrack = g1Track;
                         break;
                 case 4: gSharp1Track.play();
+                        currentTrack = gSharp1Track;
                         break; 
                 case 249: a1Track.play();
+                        currentTrack = a1Track;
                         break; 
                 case 5: aSharp1Track.play();
+                        currentTrack = aSharp1Track;
                         break;  
                 case 248: b1Track.play();
+                        currentTrack = b1Track;
                         break;
                 case 247: c2Track.play();
+                        currentTrack = c2Track;
                         break;
                 case 6: cSharp2Track.play();
+                        currentTrack = cSharp2Track;
                         break;
                 case 246: d2Track.play();
+                        currentTrack = d2Track;
                         break;
                 case 7: dSharp2Track.play();
+                        currentTrack = dSharp2Track;
                         break;
                 case 245: e2Track.play();
+                        currentTrack = e2Track;
                         break;
                 case 244: f2Track.play();
+                        currentTrack = f2Track;
                         break;
                 case 8: fSharp2Track.play();
+                        currentTrack = fSharp2Track;
                         break;
                 case 243: g2Track.play();
+                        currentTrack = g2Track;
                         break;
                 case 9: gSharp2Track.play();
+                        currentTrack = gSharp2Track;
                         break; 
                 case 242: a2Track.play();
+                        currentTrack = a2Track;
                         break; 
                 case 10: aSharp2Track.play();
+                        currentTrack = aSharp2Track;
                         break;  
                 case 241: b2Track.play();
+                        currentTrack = b2Track;
                         break;
                 default: ;
                         break;
                 }
             }
+            
+            @Override
+            public void mouseReleased(MouseEvent me) {
+                currentTrack.stop();
+            }
+
         });
         
         
