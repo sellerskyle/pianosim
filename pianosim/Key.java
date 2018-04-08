@@ -10,14 +10,14 @@ import java.util.Arrays;
 
 public class Key {
     
-    final static int NUM_OCTAVES = PianoSimTest.NUM_OCTAVES;
-    final static int WHITE_KEYS_IN_OCTAVE = PianoSimTest.WHITE_KEYS_IN_OCTAVE;
-    final static int KEYS_IN_OCTAVE = PianoSimTest.KEYS_IN_OCTAVE;
+    final static int NUM_OCTAVES = PianoSim.NUM_OCTAVES;
+    final static int WHITE_KEYS_IN_OCTAVE = PianoSim.WHITE_KEYS_IN_OCTAVE;
+    final static int KEYS_IN_OCTAVE = PianoSim.KEYS_IN_OCTAVE;
     final static int TOTAL_WHITE_KEYS = NUM_OCTAVES * WHITE_KEYS_IN_OCTAVE;
     final static int TOTAL_KEYS = NUM_OCTAVES * KEYS_IN_OCTAVE;
     final static String[] LAYOUT = generatePianoLayout();
     
-    final static int SCALE = PianoSimTest.SCALE;
+    final static int SCALE = PianoSim.SCALE;
     final static int KEY_WIDTH = SCALE;
     final static int KEY_HEIGHT = SCALE * 3;
     final static int TOP_KEY_HEIGHT = SCALE * 2;
