@@ -5,7 +5,6 @@ import basicgraphics.images.Picture;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.Arrays;
 
 
 public class Key {
@@ -104,14 +103,38 @@ public class Key {
         return this.name;
     }
     
+    public String getName() {
+        return this.name;
+    }
+    
+    public String getForm() {
+        return this.form;
+    }
+    
     public Picture getPicture() {
         return this.picture;
     }
-    
+    public Color getColor() {
+        return this.color;
+    }
     public int getXPosition() {
         return this.xPosition;
     }
-    
+    public void setXPosition(int xPos) {
+        this.xPosition = xPos;
+    }
+    public void setPicture(Picture pic) {
+        this.picture = pic;
+    }
+    public void setColor(Color c) {
+        this.color = c;
+    }
+    public void setForm(String f) {
+        this.form = f;
+    }
+    public void setName(String n) {
+        this.name = n;
+    }
     //work on this
     private static String[] generatePianoLayout(){
         String[] layout = new String[NUM_OCTAVES * KEYS_IN_OCTAVE];
