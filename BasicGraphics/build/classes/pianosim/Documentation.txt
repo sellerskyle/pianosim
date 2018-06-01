@@ -1,0 +1,26 @@
+My project is a simulation of a piano. 
+
+It can be played by either clicking and holding the piano keys, or by using your computer keyboard. 
+
+Key bindings can be found by clicking the controls button on the top bar. 
+
+What you play can also be recorded using the record and load buttons on the bottom.
+
+For information on how to use these, click the help button on the top bar.
+
+All code is contained within the files:
+PianoSim.java            : The main program which is to be run.
+Key.java                 : Contains methods for generating the piano layout.
+MyClip.java              : A rewrite of BasicGrapics audio which allows for the playing of multiple audio files.
+RecordedClip.java        : Allows for recording of MyClips, including start time and duration of play
+RecordedTrack.java       : Maintains an array of all RecordedClips and methods for playing them.
+
+
+The Piano can also be resized using the scale final field in PianoSim. It needs to be an integer divisible by 3.
+The number of octaves the piano has can also be changed by the final field in PianoSim. However, only the first 2 octaves have audio.
+
+Some Cool Features:
+-The piano is scalable in size(see above), but does not yet support notes past the 2 provided octaves.
+-Contains own type of "MIDI", which allows for recording and playback of playing.
+-The default basic graphics audio package did not allow for multiple audio clips to be played at once, and had a lot of lag. I wrote my own audio handling file to fix this.
+-The Basic graphics framework did not allow for clicking of sprites, no notes are played based on the RGB values of the pressed key when playing with the mouse.
